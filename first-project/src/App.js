@@ -7,16 +7,16 @@ import Form from './components/Form';
 import UserList from './components/UserList';
 const App=()=>{
         const [userList, setUserList]=useState([]);
-        const addNewUserHandler=(uName,uAge)=>{
+        const addNewUserHandler=(uName,uAge,uCollage)=>{
                 setUserList((prevUserList)=>{
-                        return[...prevUserList,{name:uName,age:uAge}]
+                        return[...prevUserList,{name:uName,age:uAge,collage:uCollage}]
                 })
         }
 
  
         return(
            <div>
-            <Form onAdduser={addNewUserHandler}/>
+            <Form onAddUser={addNewUserHandler}/>
             <UserList users={userList} />
            </div> 
     
