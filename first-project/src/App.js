@@ -1,34 +1,34 @@
-// import logo from './logo.svg';
-import React ,{useState} from 'react';
-import Login from './components/Login';
+import React, { useState } from "react";
 
-import './App.css';
+import Login from "./components/Login";
+import Home from "./components/Home";
+import MainHeader from "./components/MainHeader";
 import AuthContext from './components/AuthContext';
-import Home from './components/Home';
 
-const App=()=>{
-       
-        const [isLoggedIn, setIsLoggedIn] = useState(false);
+function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-        const loginHandler = () => {
-          setIsLoggedIn(true);
-        };
-      
-        const logoutHandler = () => {
-          setIsLoggedIn(false);
-        };
-      
-        return (
-          <AuthContext.Provider
-            value={{ isLoggedIn: isLoggedIn, onLogout: logoutHandler }}
-          >
-           <main>
-              {!isLoggedIn && <Login onLogin={loginHandler} />}
-              {isLoggedIn && <Home onLogout={logoutHandler} />}
-              </main>
-          </AuthContext.Provider>
-        )
-  
+  const loginHandler = (email, password) => {
+    // We should of course check email and password
+    // But it's just a dummy/ demo anyways
+    setIsLoggedIn(true);
+  };
+
+  const logoutHandler = () => {
+    setIsLoggedIn(false);
+  };
+
+  return (
+    <AuthContext.Provider
+      value={{ isLoggedIn: isLoggedIn, onLogout: logoutHandler }}
+    >
+      <MainHeader />
+      <main>
+        {!isLoggedIn && <Login onLogin={loginHandler} />}
+        {isLoggedIn && <Home onLogout={logoutHandler} />}
+      </main>
+    </AuthContext.Provider>
+  );
 }
 
 export default App;
